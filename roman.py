@@ -54,16 +54,34 @@ class RomanTest(unittest.TestCase):
         self.assertEqual(roman(10), "X")
 
 def roman(num):
-    if num < 4:
-        return "I" * num
+    units = [
+        [1,"I"]
+        , [5, "V"]
+        , [10, "X"]
+        , [50, "L"]
+        , [500, "D"]
+        , [1000, "M"]
+    ]
 
-    if num == 4:
-        return "IV"
+    def get_limit_unit(n):
+        return filter(lambda unit: n + 1 >= unit[0], units)
 
-    if num == 5:
-        return "V"
+    limit = get_limit_unit(num)
+
+    multiplier = num % 5
+    # print limit, num, multiplier
+
+    if multiplier == 0:
+        return limit[-1][1]
+    elif multiplier < 4 :
+        return limit[0][1] * multiplier
+    elif multiplier == 4:
+        return limit[0][1] + limit[-1][1]
+    
+
 
 def main():
+
     unittest.main()
 
 if __name__ == '__main__':
