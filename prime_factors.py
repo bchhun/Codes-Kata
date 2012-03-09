@@ -37,7 +37,7 @@ def primes(num):
     possibility = base
 
     while (not primes_list) and (possibility in possibilities):
-        if is_prime(possibility) and num%possibility == 0:
+        if is_prime(possibility) and num % possibility == 0:
             primes_list = primes_list + [possibility] + primes(num/possibility)
         possibility += 1
     return primes_list
