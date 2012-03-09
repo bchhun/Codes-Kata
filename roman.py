@@ -53,6 +53,9 @@ class RomanTest(unittest.TestCase):
     def test_10(self):
         self.assertEqual(roman(10), "X")
 
+    def test_50(self):
+        self.assertEqual(roman(50), "L")
+
 def roman(num):
     units = [
         [1,"I"]
@@ -74,15 +77,19 @@ def roman(num):
     if multiplier == 0:
         return limit[-1][1]
     elif multiplier < 4 :
-        return limit[0][1] * multiplier
+        if len(limit) == 1:
+            return limit[0][1] * multiplier
+        limit.reverse()
+        return limit[0][1] + limit[-1][1] * multiplier    
+
     elif multiplier == 4:
         return limit[0][1] + limit[-1][1]
-    
-
 
 def main():
-
     unittest.main()
+    # for x in range(5, 11):
+    #     print roman(x)
+
 
 if __name__ == '__main__':
     main()
