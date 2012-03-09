@@ -22,12 +22,6 @@ roman(1000) -> M
 """
 import unittest
 
-def roman(num):
-    if num == 1:
-        return "I"
-    if num == 2:
-        return "II"
-
 class RomanTest(unittest.TestCase):
     def test_1(self):
         self.assertEqual(roman(1), "I")
@@ -43,6 +37,31 @@ class RomanTest(unittest.TestCase):
 
     def test_5(self):
         self.assertEqual(roman(5), "V")
+
+    def test_6(self):
+        self.assertEqual(roman(6), "VI")
+
+    def test_7(self):
+        self.assertEqual(roman(7), "VII")
+
+    def test_8(self):
+        self.assertEqual(roman(8), "VIII")
+
+    def test_9(self):
+        self.assertEqual(roman(9), "IX")
+
+    def test_10(self):
+        self.assertEqual(roman(10), "X")
+
+def roman(num):
+    if num < 4:
+        return "I" * num
+
+    if num == 4:
+        return "IV"
+
+    if num == 5:
+        return "V"
 
 def main():
     unittest.main()
