@@ -9,6 +9,7 @@
 """
 
 from Tkinter import *
+import math
 
 class DerivedCanvas(Canvas):
     """
@@ -36,6 +37,12 @@ def draw_circle_within_rectange():
 
     mainloop()
 
+def point_on_circle(x, y, radius, angle):
+    new_x = (float)(radius * math.cos(angle * math.pi / 180)) + x
+    new_y = (float)(radius * math.sin(angle * math.pi / 180)) + y
+
+    return (new_x, new_y)
+
 def draw_simple_mandala(x, y, radius):
     """
         2.3 Nested functions
@@ -47,21 +54,21 @@ def draw_simple_mandala(x, y, radius):
         The functions will accept coordinates and radius as arguments and draw boxes and circles at different locations on the screen.
     """
     master = Tk()
-    w = DerivedCanvas(master, width=400, height=400)
+    w = DerivedCanvas(master, width=600, height=600)
     w.pack()
 
     # cercle centrale
     w.create_circle(x=x, y=y, radius=radius, fill=None, outline="red", width=1)
-    #polygone interne #1
-
-    coordinates = [x - radius, y, x, y - radius, x + radius, y, x, y + radius]
-    w.create_polygon(coordinates, outline="blue", fill=None, width=1)
-
     
-    mainloop()
+    #polygone interne #1
+    coordinates = [x - radius, y, x, y - radius, x + radius, y, x, y + radius]
+    w.create_polygon(coordinates, outline="blue", fill="blue", width=1)
+
+    print point_on_circle(x, y, radius, 0.45)
+
 
 def main():
-    draw_simple_mandala(x=200, y=200, radius=100)
+    draw_simple_mandala(x=300, y=300, radius=175)
 
 if __name__ == '__main__':
     main()
